@@ -1,0 +1,183 @@
+/* src/main.css - Weather Card Specific Styles */
+
+/* Animation Keyframes */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.weather-card-container {
+    position: relative;
+    /* 🛑 FIX: TRANSITION, ANIMATION, AND TRANSLUCENCY */
+    background-color: rgba(15, 52, 96, 0.45); /* Translucent dark blue background */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    animation: fadeInScale 0.8s ease-out forwards; /* Entrance animation */
+
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-heavy);
+    display: flex; /* Make it a flex container */
+    width: 100%;
+    max-width: 900px; /* Max width of the card */
+    min-height: 380px; /* Minimum height for consistency */
+    margin: 20px auto; /* Center the card */
+    z-index: 10; /* Ensure card is on top of the overlay */
+    color: var(--text-primary); /* Ensure text is readable */
+    flex-direction: column; /* Stack content vertically within the card */
+    flex-grow: 1; /* Allow the card to grow within the main-data-area */
+    max-height: calc(100vh - 200px); /* Adjust based on header/footer size to prevent internal overflow */
+    overflow-y: auto; /* Allow internal scrolling if card content is too large */
+}
+
+/* Hide scrollbar for WeatherCard for Chrome, Safari and Opera */
+.weather-card-container::-webkit-scrollbar {
+    display: none;
+}
+/* Hide scrollbar for WeatherCard for IE and Edge */
+.weather-card-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+.card-content {
+    display: flex;
+    flex-direction: row; /* Main content of the card: main weather and details side-by-side */
+    padding: 25px;
+    gap: 30px; /* Space between the two sections */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center; /* Center items when wrapped */
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+.main-weather-section {
+    flex: 1; /* Allows this section to grow */
+    min-width: 250px; /* Minimum width before wrapping */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-right: 15px; /* Spacing from the detail section */
+    border-right: 1px solid var(--border-color); /* Separator line */
+}
+
+.location-info {
+    margin-bottom: 20px;
+}
+
+.weather-icon-large {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+}
+
+.city-name-large {
+    font-size: 2.5em;
+    margin: 0;
+    color: var(--text-primary);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.weather-description {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.temperature-info .current-temp {
+    font-size: 4em;
+    font-weight: 700;
+    color: var(--accent-color);
+    display: block;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.temperature-info .feels-like {
+    font-size: 1em;
+    color: var(--text-secondary);
+    margin-top: -10px;
+    display: block;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.detail-weather-section {
+    flex: 1; /* Allows this section to grow */
+    min-width: 280px; /* Minimum width before wrapping */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns for details */
+    gap: 10px 20px; /* Row and column gap */
+    align-items: start;
+    padding-left: 15px; /* Spacing from the main section */
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+}
+
+.detail-value {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.source-info {
+    grid-column: span 2; /* Spans both columns */
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+}
+
+/* Responsive adjustments for WeatherCard */
+@media (max-width: 768px) {
+    .weather-card-container {
+        margin: 10px auto;
+        min-height: unset; /* Allow height to adjust */
+        max-height: unset; /* Allow height to adjust */
+    }
+
+    .card-content {
+        flex-direction: column; /* Stack sections vertically */
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .main-weather-section {
+        border-right: none; /* Remove vertical border */
+        padding-right: 0;
+        border-bottom: 1px solid var(--border-color); /* Add horizontal border */
+        padding-bottom: 20px;
+    }
+
+    .detail-weather-section {
+        grid-template-columns: 1fr; /* Single column for details */
+        padding-left: 0;
+        gap: 15px;
+    }
+
+    .city-name-large {
+        font-size: 2em;
+    }
+
+    .current-temp {
+        font-size: 3em;
+    }
+}
