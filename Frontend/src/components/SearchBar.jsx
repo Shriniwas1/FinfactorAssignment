@@ -33,6 +33,8 @@ export default function SearchBar({ onSearch, loading }) {
       setActiveIndex(prev => (prev > 0 ? prev - 1 : prev));
     } 
     else if (e.key === 'Enter' && activeIndex >= 0) {
+      // Logic for selecting suggestion is in AutocompleteList useEffect
+      // We prevent default here to stop form submission
       e.preventDefault();
     } 
     else if (e.key === 'Escape') {
