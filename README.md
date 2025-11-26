@@ -1,6 +1,10 @@
 # Weatheriea a Weather App
 A simple full-stack weather application with a Node.js/Express backend and a React frontend, using the OpenWeather API with caching.
 
+
+https://github.com/user-attachments/assets/b9c1199d-095d-4f1e-8763-a6c41a4ef8e8
+
+
 ## Table of Contents
 
 1. Overview  
